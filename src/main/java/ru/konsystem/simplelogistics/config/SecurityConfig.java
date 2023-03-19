@@ -40,19 +40,20 @@ public class SecurityConfig {
                 .httpBasic().disable()
                 .csrf().disable()
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .exceptionHandling().authenticationEntryPoint(jwtAuthEntryPoint)
-                .and()
-                .authorizeHttpRequests()
-                .requestMatchers(LOGIN_ENDPOINT).permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .apply(new JwtConfigurer(jwtTokenProvider))
-                .and()
-                .logout()
-                .clearAuthentication(true)
-                .deleteCookies("auth-token");
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//                .and()
+//                .exceptionHandling().authenticationEntryPoint(jwtAuthEntryPoint)
+//                .and()
+//                .authorizeHttpRequests()
+//                .requestMatchers("/v1/api/admin/**").hasRole("ADMIN")
+//                .requestMatchers(LOGIN_ENDPOINT, "/index.html", "/typeorg", "/org", "/org/edit").permitAll()
+//                .anyRequest().authenticated()
+//                .and()
+//                .apply(new JwtConfigurer(jwtTokenProvider))
+//                .and()
+//                .logout()
+//                .clearAuthentication(true)
+//                .deleteCookies("auth-token");
 
         return http.build();
     }

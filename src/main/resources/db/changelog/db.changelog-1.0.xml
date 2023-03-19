@@ -116,5 +116,65 @@
                                  referencedTableName="users"/>
     </changeSet>
 
+    <changeSet id="1.0.7" author="konsystem">
+        <createTable tableName="typeorg">
+
+            <column name="tog_id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="tog_quote" type="BIT(1)" defaultValue="0"/>
+
+            <column name="tog_title" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="tog_title_full" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.8" author="konsystem">
+        <createTable tableName="org">
+            <column name="org_id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="org_type" type="INT">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="org_name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="org_name_full" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="org_ati" type="INT"/>
+
+            <column name="org_inn" type="VARCHAR(25)"/>
+
+            <column name="org_kpp" type="VARCHAR(25)"/>
+
+            <column name="org_ogrn" type="VARCHAR(25)"/>
+
+            <column name="org_site" type="VARCHAR(250)"/>
+
+            <column name="org_comment" type="VARCHAR(250)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.9" author="konsystem">
+        <addForeignKeyConstraint baseColumnNames="org_type"
+                                 baseTableName="org"
+                                 constraintName="fk_org_type_tog_id"
+                                 referencedColumnNames="tog_id"
+                                 referencedTableName="typeorg"/>
+    </changeSet>
+
 
 </databaseChangeLog>
